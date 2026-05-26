@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NextAutomiq — Agence d'Automatisation IA</title>
+  <meta name="description" content="Nous construisons des automatisations IA sur-mesure pour e-commerce, SaaS et PME. Économisez 40h/semaine. Premiers résultats en 14 jours." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0f; --bg2: #111118; --bg3: #16161f;
+      --border: rgba(255,255,255,0.07); --text: #f0f0f8; --text-muted: #8888aa;
+      --accent: #6366f1; --accent2: #818cf8; --accent-glow: rgba(99,102,241,0.25);
+      --green: #22c55e; --radius: 12px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 64px; background: rgba(10,10,15,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    .logo { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; }
+    .logo span { color: var(--accent2); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { background: var(--accent); color: #fff; border: none; padding: 0.5rem 1.2rem; border-radius: 8px; font-size: 0.875rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: opacity 0.2s; }
+    .nav-cta:hover { opacity: 0.85; }
+    .lang-toggle { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; font-weight: 500; padding: 0.3rem 0.6rem; border: 1px solid var(--border); border-radius: 6px; }
+    .lang-toggle:hover { color: var(--text); border-color: var(--accent); }
+
+    .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 5% 80px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -20%; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%); pointer-events: none; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.3); padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.8rem; color: var(--accent2); font-weight: 500; margin-bottom: 2rem; }
+    .hero-badge::before { content: '●'; font-size: 0.5rem; color: var(--green); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+    h1 { font-size: clamp(2.4rem, 6vw, 4.5rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1.1; max-width: 900px; margin-bottom: 1.5rem; }
+    h1 em { font-style: normal; color: var(--accent2); }
+    .hero-sub { font-size: clamp(1rem, 2vw, 1.2rem); color: var(--text-muted); max-width: 580px; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; justify-content: center; }
+    .btn-primary { background: var(--accent); color: #fff; padding: 0.85rem 2rem; border-radius: 10px; font-size: 1rem; font-weight: 600; border: none; cursor: pointer; text-decoration: none; transition: all 0.2s; box-shadow: 0 0 30px var(--accent-glow); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px var(--accent-glow); }
+    .btn-secondary { background: transparent; color: var(--text-muted); padding: 0.85rem 2rem; border-radius: 10px; font-size: 1rem; font-weight: 500; border: 1px solid var(--border); cursor: pointer; text-decoration: none; transition: all 0.2s; }
+    .btn-secondary:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+    section { padding: 100px 5%; }
+    .section-label { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.75rem; color: var(--accent2); font-weight: 600; margin-bottom: 1rem; }
+    h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 1rem; }
+    h2 em { font-style: normal; color: var(--accent2); }
+    .section-sub { color: var(--text-muted); font-size: 1.05rem; max-width: 560px; }
+
+    .pain { background: var(--bg2); }
+    .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .pain-card { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; }
+    .pain-card .icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .pain-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .pain-card p { color: var(--text-muted); font-size: 0.9rem; }
+    .pain-card .arrow { display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem; font-size: 0.85rem; font-weight: 600; color: var(--accent2); }
+
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .service-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; transition: border-color 0.3s, transform 0.3s; }
+    .service-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .service-card.featured { border-color: var(--accent); background: linear-gradient(135deg, rgba(99,102,241,0.08), var(--bg2)); }
+    .service-badge { display: inline-block; background: rgba(99,102,241,0.15); color: var(--accent2); padding: 0.2rem 0.7rem; border-radius: 100px; font-size: 0.75rem; font-weight: 600; margin-bottom: 1rem; }
+    .service-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .service-card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .service-price { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .service-price span { font-size: 0.85rem; color: var(--text-muted); font-weight: 400; }
+    .service-features { list-style: none; }
+    .service-features li { padding: 0.4rem 0; font-size: 0.875rem; color: var(--text-muted); border-bottom: 1px solid var(--border); display: flex; gap: 0.5rem; align-items: flex-start; }
+    .service-features li:last-child { border-bottom: none; }
+    .service-features li::before { content: '✓'; color: var(--green); flex-shrink: 0; }
+    .service-cta { display: block; margin-top: 1.5rem; text-align: center; background: var(--accent); color: #fff; padding: 0.75rem; border-radius: 8px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: opacity 0.2s; }
+    .service-cta:hover { opacity: 0.85; }
+    .service-cta.outline { background: transparent; border: 1px solid var(--border); color: var(--text-muted); }
+    .service-cta.outline:hover { border-color: var(--accent); color: var(--text); }
+
+    .process { background: var(--bg2); }
+    .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; margin-top: 3rem; }
+    .step-num { width: 48px; height: 48px; border-radius: 12px; background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 700; color: var(--accent2); margin-bottom: 1rem; }
+    .step h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .step p { color: var(--text-muted); font-size: 0.9rem; }
+
+    .stack-grid { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.5rem; }
+    .stack-item { background: var(--bg3); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+
+    .cta-section { text-align: center; background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .cta-section h2 { margin-bottom: 1rem; }
+    .cta-section p { color: var(--text-muted); max-width: 500px; margin: 0 auto 2rem; }
+
+    .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1000px; margin: 3rem auto 0; align-items: start; }
+    .contact-info h3 { font-size: 1.3rem; font-weight: 600; margin-bottom: 1rem; }
+    .contact-info p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+    .contact-perks { list-style: none; }
+    .contact-perks li { display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.6rem 0; color: var(--text-muted); font-size: 0.9rem; }
+    .contact-perks li span:first-child { color: var(--green); flex-shrink: 0; }
+    form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    input, select, textarea { background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 0.75rem 1rem; border-radius: 8px; font-size: 0.9rem; font-family: inherit; width: 100%; transition: border-color 0.2s; }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
+    input::placeholder, textarea::placeholder { color: var(--text-muted); }
+    textarea { min-height: 120px; resize: vertical; }
+    select option { background: var(--bg3); }
+    .submit-btn { background: var(--accent); color: #fff; border: none; padding: 0.85rem; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 0 20px var(--accent-glow); }
+    .submit-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+    .form-note { font-size: 0.8rem; color: var(--text-muted); text-align: center; }
+
+    footer { padding: 2.5rem 5%; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 1rem; }
+    footer p { color: var(--text-muted); font-size: 0.85rem; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; }
+    .footer-links a:hover { color: var(--text); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 2rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Next<span>Automiq</span></div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#process">Comment ça marche</a>
+    <a href="#contact">Contact</a>
+    <a href="../index.html" class="lang-toggle">🇬🇧 EN</a>
+  </div>
+  <a href="#contact" class="nav-cta">Appel gratuit →</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">Agence IA · Disponible pour nouveaux clients</div>
+  <h1>On automatise ce qui <em>freine votre croissance</em></h1>
+  <p class="hero-sub">
+    Workflows IA sur-mesure pour e-commerce, SaaS et PME.
+    Économisez 40h/semaine. Livrés en 14 jours. Sans engagement.
+  </p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">Réserver un appel gratuit →</a>
+    <a href="#services" class="btn-secondary">Voir ce qu'on construit</a>
+  </div>
+</section>
+
+<section class="pain" id="pain">
+  <p class="section-label">Pourquoi nos clients nous contactent</p>
+  <h2>Votre équipe fait un travail que <em>des logiciels devraient faire</em></h2>
+  <p class="section-sub">Chaque heure passée sur des tâches répétitives est une heure non investie dans la croissance.</p>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <div class="icon">📦</div>
+      <h3>Gestion des commandes & stocks manuelle</h3>
+      <p>3 à 4 heures/jour à synchroniser les commandes, mettre à jour les stocks, relancer les fournisseurs.</p>
+      <div class="arrow">→ Automatisation complète : 0 saisie manuelle</div>
+    </div>
+    <div class="pain-card">
+      <div class="icon">📧</div>
+      <h3>Surcharge du support client</h3>
+      <p>Les mêmes 20 questions répondues 50 fois par semaine. Aucun tri IA, aucune réponse automatique.</p>
+      <div class="arrow">→ L'IA gère 70% des tickets</div>
+    </div>
+    <div class="pain-card">
+      <div class="icon">📊</div>
+      <h3>Reporting manuel sur tableurs</h3>
+      <p>Les rapports mensuels prennent 2 jours à compiler depuis 5 outils différents.</p>
+      <div class="arrow">→ Tableaux de bord en temps réel, sans effort</div>
+    </div>
+    <div class="pain-card">
+      <div class="icon">🔗</div>
+      <h3>Outils qui ne communiquent pas</h3>
+      <p>Shopify, HubSpot, Slack, Notion — tout est cloisonné. Saisie de données dupliquée partout.</p>
+      <div class="arrow">→ Stack unifié et connecté</div>
+    </div>
+    <div class="pain-card">
+      <div class="icon">💸</div>
+      <h3>Recrutement pour résoudre des problèmes d'automatisation</h3>
+      <p>Embaucher pour des tâches qu'un workflow IA gérerait en quelques secondes.</p>
+      <div class="arrow">→ Automatisez avant d'embaucher</div>
+    </div>
+    <div class="pain-card">
+      <div class="icon">⏱️</div>
+      <h3>Leads qui ne reçoivent pas de suivi</h3>
+      <p>Des prospects chauds qui refroidissent faute d'un suivi dans l'heure.</p>
+      <div class="arrow">→ Suivi instantané et personnalisé</div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <p class="section-label">Services & Tarifs</p>
+  <h2>Ce que nous <em>construisons pour vous</em></h2>
+  <p class="section-sub">Projets à périmètre fixe et retainers mensuels. Sans surprise, sans agence obèse.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-badge">Projet one-shot</div>
+      <h3>Automatisation Starter</h3>
+      <p>Un workflow d'automatisation complet, construit, testé et déployé. Idéal pour valider votre première automatisation.</p>
+      <div class="service-price">1 200 € <span>forfait</span></div>
+      <ul class="service-features">
+        <li>1 workflow d'automatisation sur-mesure</li>
+        <li>Intégration avec vos outils existants</li>
+        <li>Livraison garantie en 14 jours</li>
+        <li>2 semaines de support post-lancement</li>
+        <li>Documentation complète + passation</li>
+      </ul>
+      <a href="#contact" class="service-cta outline">Démarrer →</a>
+    </div>
+
+    <div class="service-card featured">
+      <div class="service-badge">⭐ Le plus demandé</div>
+      <h3>Retainer Croissance</h3>
+      <p>Développement et optimisation d'automatisations en continu. Nous devenons votre équipe Ops IA dédiée.</p>
+      <div class="service-price">1 800 € <span>/ mois</span></div>
+      <ul class="service-features">
+        <li>2 workflows d'automatisation / mois</li>
+        <li>Maintenance & monitoring inclus</li>
+        <li>Points hebdomadaires d'avancement</li>
+        <li>Demandes de révision illimitées</li>
+        <li>Support Slack prioritaire</li>
+        <li>Résiliable à tout moment, sans engagement</li>
+      </ul>
+      <a href="#contact" class="service-cta">Réserver un appel gratuit →</a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-badge">IA Full-Stack</div>
+      <h3>Pack Scale</h3>
+      <p>Pour les équipes prêtes à automatiser des départements entiers. Stratégie + build + maintenance à grande échelle.</p>
+      <div class="service-price">3 500 € <span>/ mois</span></div>
+      <ul class="service-features">
+        <li>Builds d'automatisation illimités</li>
+        <li>Développement d'agents IA</li>
+        <li>Dashboard & reporting sur-mesure</li>
+        <li>Canal Slack dédié</li>
+        <li>Session stratégie mensuelle</li>
+        <li>Suivi & reporting ROI</li>
+      </ul>
+      <a href="#contact" class="service-cta outline">Parlons-en →</a>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <p class="section-label">Comment ça marche</p>
+  <h2>Du premier appel à <em>la première automatisation live</em> en 14 jours</h2>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Appel découverte (gratuit, 30 min)</h3>
+      <p>On cartographie vos workflows actuels, on identifie l'automatisation au ROI le plus élevé, et on scope le projet. Sans pitch, sans pression.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Proposition & démarrage (J1-J2)</h3>
+      <p>Vous recevez un spec clair : ce qu'on construit, les intégrations nécessaires, le planning et le prix. On démarre à la validation.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Build & tests (J3-J12)</h3>
+      <p>On développe l'automatisation dans votre stack. Mises à jour async quotidiennes. Vous voyez l'avancement, pas seulement le résultat final.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h3>Déploiement & passation (J13-J14)</h3>
+      <p>Mise en production. On documente tout, on forme votre équipe si besoin, et on reste disponibles 2 semaines après le lancement.</p>
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <p class="section-label">Stack technique</p>
+  <h2>Construit sur les outils que <em>votre équipe utilise déjà</em></h2>
+  <p class="section-sub">On s'intègre à votre stack existant — pas de remplacement total requis.</p>
+  <div class="stack-grid">
+    <span class="stack-item">Make (Integromat)</span>
+    <span class="stack-item">n8n</span>
+    <span class="stack-item">Zapier</span>
+    <span class="stack-item">API Claude</span>
+    <span class="stack-item">API OpenAI</span>
+    <span class="stack-item">Shopify</span>
+    <span class="stack-item">WooCommerce</span>
+    <span class="stack-item">HubSpot</span>
+    <span class="stack-item">Notion</span>
+    <span class="stack-item">Airtable</span>
+    <span class="stack-item">Slack</span>
+    <span class="stack-item">Google Workspace</span>
+    <span class="stack-item">Stripe</span>
+    <span class="stack-item">Scripts Node.js custom</span>
+    <span class="stack-item">REST APIs</span>
+    <span class="stack-item">Webhooks</span>
+    <span class="stack-item">PostgreSQL / Supabase</span>
+    <span class="stack-item">Web3 / APIs Blockchain</span>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Prêt à arrêter de faire <em>ce que des logiciels devraient faire ?</em></h2>
+  <p>Réservez un appel gratuit de 30 minutes. On identifie votre automatisation à plus fort ROI et on la scope gratuitement.</p>
+  <a href="#contact" class="btn-primary">Réserver votre appel stratégie gratuit →</a>
+</section>
+
+<section id="contact">
+  <p class="section-label">Contact</p>
+  <h2>Parlons de <em>votre automatisation</em></h2>
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <h3>Appel stratégie gratuit — 30 minutes</h3>
+      <p>Dites-nous sur quoi vous travaillez. On identifie votre meilleure opportunité d'automatisation et on vous donne une estimation avant tout engagement.</p>
+      <ul class="contact-perks">
+        <li><span>✓</span><span>Pas de pitch — une vraie conversation sur vos opérations</span></li>
+        <li><span>✓</span><span>On cartographie le workflow qui vous fait gagner le plus de temps</span></li>
+        <li><span>✓</span><span>Scope et estimation de coût avant tout engagement</span></li>
+        <li><span>✓</span><span>Premiers créneaux disponibles sous 48h</span></li>
+      </ul>
+      <p style="margin-top:1.5rem; font-size:0.85rem; color:var(--text-muted)">Ou par email : <strong style="color:var(--text)">hello@nextautomiq.com</strong></p>
+    </div>
+    <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Votre nom" required />
+        <input type="email" name="email" placeholder="Email professionnel" required />
+      </div>
+      <input type="text" name="company" placeholder="Entreprise / site web" />
+      <select name="budget" required>
+        <option value="" disabled selected>Budget mensuel</option>
+        <option value="starter">Projet one-shot (1 200 €)</option>
+        <option value="growth">Retainer Croissance (1 800 €/mois)</option>
+        <option value="scale">Pack Scale (3 500 €/mois)</option>
+        <option value="custom">Sur devis / pas encore sûr</option>
+      </select>
+      <textarea name="message" placeholder="Quelles tâches répétitives monopolisent le temps de votre équipe ? Quels outils utilisez-vous ?" required></textarea>
+      <button type="submit" class="submit-btn">Envoyer →</button>
+      <p class="form-note">Réponse sous 24h, souvent bien plus rapide.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 NextAutomiq — Agence d'automatisation IA basée en EU.</p>
+  <div class="footer-links">
+    <a href="../index.html">English 🇬🇧</a>
+    <a href="mailto:hello@nextautomiq.com">hello@nextautomiq.com</a>
+  </div>
+</footer>
+
+<script>
+  const form = document.getElementById('contact-form');
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('.submit-btn');
+      btn.textContent = 'Envoi en cours…';
+      btn.disabled = true;
+      try {
+        const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+          form.innerHTML = '<p style="text-align:center;color:var(--green);font-size:1.1rem;padding:2rem 0">✓ Message reçu ! On vous répond sous 24h.</p>';
+        } else { btn.textContent = 'Erreur — envoyez un email directement'; }
+      } catch { btn.textContent = 'Erreur — envoyez un email directement'; btn.disabled = false; }
+    });
+  }
+</script>
+</body>
+</html>
