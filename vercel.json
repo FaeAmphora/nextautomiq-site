@@ -3,6 +3,7 @@
   "trailingSlash": false,
   "routes": [
     { "src": "/fr", "dest": "/fr/index.html" },
+    { "src": "/hire-n8n-freelancer", "dest": "/hire-n8n-freelancer.html" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }
